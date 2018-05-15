@@ -7,7 +7,8 @@ class DashboardRoute extends React.Component {
     dashboardAddItem: PropTypes.func.isRequired,
     dashboardEditItem: PropTypes.func.isRequired,
     dashboardReorderItems: PropTypes.func.isRequired,
-    dashboard: PropTypes.object.isRequired
+    dashboard: PropTypes.object.isRequired,
+    session: PropTypes.object.isRequired
   }
 
   componentDidMount () {
@@ -31,6 +32,9 @@ class DashboardRoute extends React.Component {
   }
 
   render () {
+    if (!this.props.session.isLoggedIn) {
+      return <h4>Please login in order to access your dashboard</h4>
+    }
     const { dashboard } = this.props
     return (
       <Dashboard
